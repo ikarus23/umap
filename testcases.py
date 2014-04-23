@@ -19,7 +19,7 @@ testcases_class_independent = [
 ["Configuration_bLength_null","conf_bLength",0],
 ["Configuration_bLength_lower","conf_bLength",1],
 ["Configuration_bLength_higher","conf_bLength",0xf0],
-["Configuration_bLength_max","conf_bLength",10],
+["Configuration_bLength_max","conf_bLength",0xff],
 ["Configuration_bDescriptorType_null","conf_bDescriptorType",0],
 ["Configuration_bDescriptorType_invalid","conf_bDescriptorType",0xff],
 ["Configuration_wTotalLength_null","conf_wTotalLength",0],
@@ -376,7 +376,7 @@ testcases_audio_class = [
 ["CSInterface1_wTotalLength_lower","CSInterface1_wTotalLength",0x0001],
 ["CSInterface1_wTotalLength_higher","CSInterface1_wTotalLength",0x0100],
 ["CSInterface1_wTotalLength_max","CSInterface1_wTotalLength",0xffff],
-["CSInterface1_bInCollection_null","CSInterface1_bInCollection",0x00], # Triggers BSOD
+["CSInterface1_bInCollection_null","CSInterface1_bInCollection",0x00],
 ["CSInterface1_bInCollection_lower","CSInterface1_bInCollection",0x01],
 ["CSInterface1_bInCollection_higher","CSInterface1_bInCollection",0x10],
 ["CSInterface1_bInCollection_max","CSInterface1_bInCollection",0xff],
@@ -439,8 +439,8 @@ testcases_hid_class = [
 ["HID_wDescriptorLength_lower","HID_wDescriptorLength",b'\x10\x00'],
 ["HID_wDescriptorLength_higher","HID_wDescriptorLength",b'\xff\x00'],
 ["HID_wDescriptorLength_max","HID_wDescriptorLength",b'\xff\xff'],
-["Report_Usage_Page_Logic_error1","Report_Usage_Page",b'\xb1\x01'], # Triggers BSOD
-["Report_Usage_Page_Logic_error2","Report_Usage_Page",b'\x81\x01'], # Triggers BSOD
+["Report_Usage_Page_Logic_error1","Report_Usage_Page",b'\xb1\x01'],
+["Report_Usage_Page_Logic_error2","Report_Usage_Page",b'\x81\x01'],
 ["Report_Usage_Page_Logic_error3","Report_Usage_Page",b'\xff\x01'],
 ["Report_Usage_Keyboard_Logic_error1","Report_Usage_Keyboard",b'\xb1\x06'],
 ["Report_Usage_Keyboard_Logic_error2","Report_Usage_Keyboard",b'\x81\x06'],
