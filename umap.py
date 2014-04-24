@@ -32,10 +32,10 @@ current_version = "1.03"
 current_platform = platform.system()
 
 print ("\n---------------------------------------")
-print (" _   _ _ __ ___   __ _ _ __")   
-print ("| | | | '_ ` _ \ / _` | '_ \\")  
-print ("| |_| | | | | | | (_| | |_) |") 
-print (" \__,_|_| |_| |_|\__,_| .__/")  
+print (" _   _ _ __ ___   __ _ _ __")
+print ("| | | | '_ ` _ \ / _` | '_ \\")
+print ("| |_| | | | | | | (_| | |_) |")
+print (" \__,_|_| |_| |_|\__,_| .__/")
 print ("                      |_|  ")
 print ("\nThe USB host assessment tool")
 print ("Andy Davis, NCC Group 2013")
@@ -186,7 +186,7 @@ if options.ref:
                 line = line.rstrip()
                 if line.startswith("#"):
                     continue
-                if line.startswith("# List of known device classes, subclasses and protocols"): 
+                if line.startswith("# List of known device classes, subclasses and protocols"):
                     break
                 if not line.startswith("\t"):
                     current_vendor, name = line.split(None, 1)
@@ -194,8 +194,8 @@ if options.ref:
                 if line.startswith("\t"):
                     device_id, desc = line.lstrip().split(None, 1)
                     vendors[current_vendor].devices[device_id] = desc
-        try:       
-            print(vendors[lookup_vid].name, end=" ") 
+        try:
+            print(vendors[lookup_vid].name, end=" ")
         except:
             print ("\nVID could not be located")
         try:
@@ -214,9 +214,9 @@ if options.dly:
 
     except ValueError:
         print("Error: Enumeration delay is not an integer")
-    
+
 else:
-    enumeration_delay = 1     
+    enumeration_delay = 1
 
 def optionerror():
     print ("Error: Invalid option\n")
@@ -224,7 +224,7 @@ def optionerror():
 
 
 def execute_fuzz_testcase (device_class, device_subclass, device_proto, current_testcase, serialnum):
-    
+
 #    sp = connectserial()
     mode = 3
 
@@ -515,7 +515,7 @@ def connect_as_mass_storage (vid, pid, rev, mode):
         ver1 = 1
         ver2 = 4
 #    sp = connectserial()
-    fake_testcase = ["dummy","",0] 
+    fake_testcase = ["dummy","",0]
     fd = Facedancer(sp, verbose=ver1)
     logfp = 0
     if options.log:
@@ -549,7 +549,7 @@ def identify_classes (single_device):
         supported_devices_id = single_device
     else:
         supported_devices_id = supported_devices
-        
+
     class_count = 0
 
 
@@ -583,7 +583,7 @@ def identify_classes (single_device):
         sys.stdout.flush()
 
         print ("")
-        time.sleep(int(enumeration_delay)) 
+        time.sleep(int(enumeration_delay))
         class_count += 1
 
 
@@ -680,7 +680,7 @@ if options.fuzzs:
             execute_fuzz_testcase (usbclass,usbsubclass,usbproto,testcases_smartcard_class[fuzztestcase],serial0)
         else:
             print ("\n***Class fuzzing not yet implemented for this device***\n")
-        
+
     else:
         optionerror()
 
@@ -705,7 +705,7 @@ if options.fuzzc:
         print ("Error: Device class specification invalid\n")
         sys.exit()
 
-    if fuzztype == "E" or fuzztype == "A": 
+    if fuzztype == "E" or fuzztype == "A":
 
         print ("Fuzzing:")
         if options.log:
@@ -736,9 +736,10 @@ if options.fuzzc:
             if options.log:
                 fplog.write (timestamp)
                 fplog.write (print_output)
-                
+
             execute_fuzz_testcase (usbclass,usbsubclass,usbproto,testcases_class_independent[x],serial0)
             x+=1
+        start_fuzzcase = 0 # Start other (class specific) test cases at 0.
 
     if fuzztype == "C" or fuzztype == "A":
 
@@ -985,7 +986,7 @@ if options.device:
     elif dev == 3:
         connect_as_keyboard (device_vid, device_pid, device_rev, 3)
     elif dev == 6:
-        connect_as_image (device_vid, device_pid, device_rev, 2)   
+        connect_as_image (device_vid, device_pid, device_rev, 2)
     elif dev == 7:
         connect_as_printer (device_vid, device_pid, device_rev, 0)
     elif dev == 8:
@@ -1044,7 +1045,7 @@ if options.osid:
     if any("SetFea" in s for s in u.fingerprint):
         print ("\nOS Matches: Apple iPad/iPhone\n")
         sys.exit()
-    
+
     matching = [s for s in u.fingerprint if "SetInt" in s]
     if len(matching) == 2:
         print ("\nOS Matches: Ubuntu Linux\n")
@@ -1060,7 +1061,7 @@ if options.osid:
         sys.exit()
 
     print ("\nUnknown OS - Fingerprint:")
-    print (u.fingerprint) 
+    print (u.fingerprint)
 
 
 if options.log:
